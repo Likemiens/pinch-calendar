@@ -14,6 +14,9 @@
   height: 100%;
   min-height: 0;
   overflow: hidden;
+  /* its size never follows its bands, which follow its size: a parent with no height gets 480px, not a loop */
+  contain: size;
+  contain-intrinsic-height: 480px;
   background: linear-gradient(to right, var(--pc-rail) var(--pc-rail-width), var(--pc-band) 0);
   color: var(--pc-ink);
   font-family: var(--ui-font);
@@ -39,7 +42,8 @@
 
 /* the script keeps the scroll in place itself, the browser's own anchoring would fight it */
 .pc-list {
-  height: 100%;
+  position: absolute;
+  inset: 0;
   overflow-y: auto;
   overflow-anchor: none;
   overscroll-behavior: contain;

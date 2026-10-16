@@ -1,6 +1,6 @@
 {
   "name": "pinch-calendar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A React list of days whose density follows a pinch, after Timepage: smooth under the fingers, a spring to whole days on release.",
   "license": "MIT",
   "author": {

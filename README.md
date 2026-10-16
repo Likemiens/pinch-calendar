@@ -81,7 +81,7 @@ export function Agenda() {
 
 Three things to keep in mind:
 
-- **The parent needs a height.** The calendar fills it.
+- **The parent needs a height.** The calendar fills it; under a parent without one it is 480 px tall.
 - **Pass the density back as is.** `onDensityChange` fires on every frame of a pinch and of the spring. The value is fractional while it moves, so round it only to show it.
 - **Dates are `YYYY-MM-DD`.** `today` is the viewer's local date. On a prerendered page, work it out in the browser: [example.tsx](example.tsx) shows how.
 
@@ -100,7 +100,7 @@ Three things to keep in mind:
 | `labels` | `PinchCalendarLabels` | required | Words for screen readers: `calendar`, `density`, `today` and `days(count)` |
 | `state` | `"pinch" \| "focus" \| "away"` | — | Shows a state without a hand, for previews and screenshots |
 
-A taller day shows more events. `time` is shown before the title just as you write it, and events keep the order you pass them in.
+A taller day shows more events. `time` is shown before the title just as you write it, and events keep the order you pass them in. The props are typed as `PinchCalendarProps`, exported with the component.
 
 ## Gestures and keys
 

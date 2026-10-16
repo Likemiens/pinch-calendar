@@ -8,8 +8,8 @@ copy both files, or `npx degit Likemiens/pinch-calendar components/pinch-calenda
 
 ## Contract
 
-Exports `PinchCalendar`, `densityRange` (`[3, 14]`) and the types `CalendarEvent`, `PinchCalendarLabels`,
-`PinchCalendarState`. The props type is `ComponentProps<typeof PinchCalendar>`.
+Exports `PinchCalendar`, `densityRange` (`[3, 14]`) and the types `PinchCalendarProps`, `CalendarEvent`,
+`PinchCalendarLabels`, `PinchCalendarState`.
 
 | Prop | Type | Notes |
 |---|---|---|
@@ -72,7 +72,8 @@ const labels: PinchCalendarLabels = {
   It draws first and reports after; a prop that differs from what it drew counts as a density from outside, which
   stops the spring and jumps there. The value is fractional while a pinch or the spring runs: round it only to show it.
 - The parent needs a definite height (px, `dvh`, a sized flex or grid cell): the calendar is `height: 100%`.
-  Under an auto-height parent it measures its own content, and the bands grow out of control.
+  Under an auto-height parent it is 480 px tall. It never takes its size from its content (`contain: size`),
+  so in a shrink-to-fit box (inline-block, a flex row item without a width) give it a width too.
 - Dates are `YYYY-MM-DD`. An event's `date` is matched as a string, so give no time part. `time` is display
   text; events keep the order you pass them in.
 - `today` is the viewer's local date (`toISOString()` gives the UTC one). On a prerendered page work it out in the

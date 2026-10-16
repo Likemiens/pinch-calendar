@@ -39,7 +39,7 @@ export type PinchCalendarLabels = {
   days: (count: number) => string;
 };
 
-type PinchCalendarProps = {
+export type PinchCalendarProps = {
   /** the first day of the list, ISO date */
   from: string;
   /** how many days the list holds */
@@ -320,25 +320,28 @@ export function PinchCalendar({
 
   useEffect(() => {
     const box = list.current;
-    if (!box) return;
+    const node = root.current;
+    if (!box || !node) return;
     const active = { passive: false };
-    const listeners: [string, EventListener, AddEventListenerOptions?][] = [
-      ["touchstart", (event) => onTouchStart(event as TouchEvent), active],
-      ["touchmove", (event) => onTouchMove(event as TouchEvent), active],
-      ["touchend", (event) => onTouchEnd(event as TouchEvent)],
-      ["touchcancel", (event) => onTouchEnd(event as TouchEvent)],
-      ["wheel", (event) => onWheel(event as WheelEvent), active],
-      ["gesturestart", (event) => onGesture(event as SafariGestureEvent), active],
-      ["gesturechange", (event) => onGesture(event as SafariGestureEvent), active],
-      ["gestureend", (event) => onGesture(event as SafariGestureEvent), active],
-      ["scroll", () => onScroll(), { passive: true }],
+    // Fingers pinch and scroll the list. A trackpad pinch is taken on the whole calendar: over the grip or the
+    // today button it would otherwise zoom the page.
+    const listeners: [Element, string, EventListener, AddEventListenerOptions?][] = [
+      [box, "touchstart", (event) => onTouchStart(event as TouchEvent), active],
+      [box, "touchmove", (event) => onTouchMove(event as TouchEvent), active],
+      [box, "touchend", (event) => onTouchEnd(event as TouchEvent)],
+      [box, "touchcancel", (event) => onTouchEnd(event as TouchEvent)],
+      [box, "scroll", () => onScroll(), { passive: true }],
+      [node, "wheel", (event) => onWheel(event as WheelEvent), active],
+      [node, "gesturestart", (event) => onGesture(event as SafariGestureEvent), active],
+      [node, "gesturechange", (event) => onGesture(event as SafariGestureEvent), active],
+      [node, "gestureend", (event) => onGesture(event as SafariGestureEvent), active],
     ];
-    for (const [type, listener, options] of listeners) box.addEventListener(type, listener, options);
+    for (const [target, type, listener, options] of listeners) target.addEventListener(type, listener, options);
     const observer = new ResizeObserver(() => onResize());
     observer.observe(box);
     const current = view.current;
     return () => {
-      for (const [type, listener] of listeners) box.removeEventListener(type, listener);
+      for (const [target, type, listener] of listeners) target.removeEventListener(type, listener);
       observer.disconnect();
       cancelAnimationFrame(current.frame);
       clearTimeout(current.wheel);
