@@ -3,7 +3,8 @@
 `PinchCalendar` is a React client component: a list of days whose density (days in view) follows a pinch.
 Two files, no dependencies: `pinch-calendar.tsx` imports `./pinch-calendar.css` itself, so keep them side by
 side. It needs React 19.2+ (`useEffectEvent`) and a bundler that handles CSS imports (Next.js, Vite). Install:
-copy both files, or `npx degit Likemiens/pinch-calendar components/pinch-calendar`. The file starts with
+`npm i github:Likemiens/pinch-calendar` and import from `@likemiens/pinch-calendar` (JavaScript with its types),
+or copy both files and import from `./pinch-calendar`. The file starts with
 `"use client"`, so a Next.js server component can render it. `example.tsx` is a complete page.
 
 ## Contract

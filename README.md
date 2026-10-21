@@ -33,11 +33,13 @@ It is one React component in two files, with nothing else to install. It works w
 
 ## Quick start
 
-Copy `pinch-calendar.tsx` and `pinch-calendar.css` into your project, side by side. Or take the whole folder:
+Install it:
 
 ```bash
-npx degit Likemiens/pinch-calendar components/pinch-calendar
+npm i github:Likemiens/pinch-calendar
 ```
+
+Or copy `pinch-calendar.tsx` and `pinch-calendar.css` into your project, side by side, and import from `./pinch-calendar`.
 
 Then put it in a parent that has a height:
 
@@ -45,7 +47,7 @@ Then put it in a parent that has a height:
 "use client";
 
 import { useState } from "react";
-import { PinchCalendar, type CalendarEvent } from "./pinch-calendar"; // brings pinch-calendar.css with it
+import { PinchCalendar, type CalendarEvent } from "@likemiens/pinch-calendar"; // brings pinch-calendar.css with it
 
 const events: CalendarEvent[] = [
   { date: "2026-10-16", time: "09:30", title: "Standup" },

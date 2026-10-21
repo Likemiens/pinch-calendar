@@ -1,5 +1,5 @@
 {
-  "name": "pinch-calendar",
+  "name": "@likemiens/pinch-calendar",
   "version": "1.0.1",
   "description": "A React list of days whose density follows a pinch, after Timepage: smooth under the fingers, a spring to whole days on release.",
   "license": "MIT",
@@ -15,11 +15,11 @@
   "bugs": {
     "url": "https://github.com/Likemiens/pinch-calendar/issues"
   },
-  "private": true,
   "type": "module",
-  "main": "./pinch-calendar.tsx",
+  "main": "./pinch-calendar.js",
   "files": [
-    "pinch-calendar.tsx",
+    "pinch-calendar.js",
+    "pinch-calendar.d.ts",
     "pinch-calendar.css"
   ],
   "peerDependencies": {
@@ -35,5 +35,20 @@
     "gesture",
     "spring",
     "timepage"
-  ]
+  ],
+  "module": "./pinch-calendar.js",
+  "types": "./pinch-calendar.d.ts",
+  "exports": {
+    ".": {
+      "types": "./pinch-calendar.d.ts",
+      "import": "./pinch-calendar.js"
+    },
+    "./pinch-calendar.css": "./pinch-calendar.css"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

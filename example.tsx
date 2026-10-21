@@ -2,7 +2,7 @@
 
 // A full-height agenda: a week in view, a few plans around today. Put it next to pinch-calendar.tsx.
 import { useMemo, useState, useSyncExternalStore } from "react";
-import { PinchCalendar, type CalendarEvent, type PinchCalendarLabels } from "./pinch-calendar";
+import { PinchCalendar, type CalendarEvent, type PinchCalendarLabels } from "@likemiens/pinch-calendar";
 
 const labels: PinchCalendarLabels = {
   calendar: "Calendar",
