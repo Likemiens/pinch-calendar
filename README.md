@@ -36,7 +36,7 @@ It is one React component in two files, with nothing else to install. It works w
 Install it:
 
 ```bash
-npm i github:Likemiens/pinch-calendar
+npm i @likemiens/pinch-calendar
 ```
 
 Or copy `pinch-calendar.tsx` and `pinch-calendar.css` into your project, side by side, and import from `./pinch-calendar`.
